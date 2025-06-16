@@ -1,10 +1,10 @@
 services:
   app:
-    container_name: futbol-app
+    container_name: football-app
     build:
       context: .
       dockerfile: Dockerfile
-    image: futbol
+    image: football
     ports:
       - "8015:80"
     volumes:
@@ -12,20 +12,20 @@ services:
     depends_on:
       - db
     networks:
-      - futbol-network
+      - football-network
     environment:
       - LC_ALL=tr_TR.UTF-8
       - LANG=tr_TR.UTF-8
 
   db:
     image: mysql:8.0
-    container_name: futbol-db
+    container_name: football-db
     volumes:
       - mysql-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_HOST: "%"
       MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: futbol-db
+      MYSQL_DATABASE: football-db
       MYSQL_USER: laravel_user
       MYSQL_PASSWORD: root
       MYSQL_CHARSET: utf8mb4
@@ -33,10 +33,10 @@ services:
     ports:
       - "3315:3306"
     networks:
-      - futbol-network
+      - football-network
 
 networks:
-  futbol-network:
+  football-network:
 
 volumes:
   mysql-data:
